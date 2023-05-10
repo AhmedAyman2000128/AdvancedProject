@@ -3,10 +3,10 @@ package AdvancedProject;
 
 import java.util.Vector;
 
-public class Line {
+public class Line1 {
     private Vector<String> l=new Vector<String>();
     private Block B;//gdeed
-   public Line(String s){
+   public Line1(String s){
        try{
            B=new Block(s);
        int i=s.indexOf("<Line");

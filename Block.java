@@ -147,4 +147,14 @@ public class Block{
    public void setNoOfOutputs(int outputs){
        noOfOutputs=outputs;
    }
+   public int getMaxWidth(){
+       int max=0;
+       for(int i=0;i<getNoOfBlocks();i++){
+           if(max<getBlockHeight(i)){
+               max=getBlockHeight(i);
+           }
+       }
+       return max;
+   }
+   
 }

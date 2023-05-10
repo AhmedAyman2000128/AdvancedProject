@@ -1,5 +1,8 @@
 package AdvancedProject;
 
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.application.Application;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -15,15 +18,18 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 
 public class Project extends Application {
     @Override
-     public void start(Stage primaryStage)throws IOException{
+     public void start(Stage primaryStage)throws IOException, ParserConfigurationException, SAXException{
          String filename = "F:/Electrical junior2/Advanced programming/Project/Example.mdl";
 
         // Read the .mdl file as a string
@@ -36,7 +42,7 @@ public class Project extends Application {
         ///System.out.println(s);
         //showing the window
         Block B=new Block(s);
-        Line L=new Line(s);
+        Line1 L=new Line1(s);
         Rectangle []r=new Rectangle[B.getNoOfBlocks()];
         Text []t =new Text[B.getNoOfBlocks()];
         for(int i=0;i<B.getNoOfBlocks();i++){
@@ -54,9 +60,23 @@ public class Project extends Application {
         t[i].setX(B.getXCoordinate(i));
         t[i].setFont(new Font(10));
         }
+        //
+        LinesNew l =new LinesNew(s);
+        l.setLines();
+       // Line []l1=l.getLines();
+        Path []p=l.getPaths();
+        //
         Pane pane=new Pane();
         pane.getChildren().addAll(t);
         pane.getChildren().addAll(r);
+       // pane.getChildren().addAll(l1);
+       pane.getChildren().add(p[0]);
+       pane.getChildren().add(p[1]);
+       pane.getChildren().add(p[3]);
+       pane.getChildren().add(p[5]);
+       
+       //pane.getChildren().add();
+        
 
         Scene scene =new Scene(pane,B.getTotalBlocksWidth(),B.getTotalBlockHeight());
         
