@@ -54,14 +54,10 @@ public class Project extends Application {
         t[i].setX(B.getXCoordinate(i));
         t[i].setFont(new Font(10));
         }
-        System.out.println(B.getMinX());
-        System.out.println(B.getMaxX());
         Pane pane=new Pane();
         pane.getChildren().addAll(t);
         pane.getChildren().addAll(r);
-        //System.out.println(Screen.getPrimary().getBounds().getWidth());
-        
-        //pane.setPadding(new Insets(100,100,100,100));
+
         Scene scene =new Scene(pane,B.getTotalBlocksWidth(),B.getTotalBlockHeight());
         
          primaryStage.setScene(scene);
@@ -69,7 +65,6 @@ public class Project extends Application {
          primaryStage.show();
      }
     public static void main(String[] args) throws IOException {
-        
         
         Application.launch(args);
         

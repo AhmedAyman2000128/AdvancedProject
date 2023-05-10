@@ -4,6 +4,8 @@ import java.util.Vector;
 
 public class Block{
    private Vector<String> p=new Vector<String>();
+   private int noOfInputs=0;
+   private int noOfOutputs=0;
    public Block(String s){
        try{
        int i=s.indexOf("<Block");
@@ -137,7 +139,12 @@ public class Block{
    public int getTotalBlockHeight(){
        return getMaxY()-getMinY()+100;
    }
-   /*public int getNoOfInputs(String blockName){
-       String block=getBlockByName(blockName);
-   } */
+   //gdeed
+   public void setNoOfInputs(int inputs){
+       noOfInputs=inputs;
+   }
+   //gdeed
+   public void setNoOfOutputs(int outputs){
+       noOfOutputs=outputs;
+   }
 }
