@@ -22,24 +22,20 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-public class LinesNew {
+public class Lines {
     private NodeList lineTag;
     private Line []l;
     private Path []p;
     Block B;
-    public LinesNew(String s) throws ParserConfigurationException, SAXException, IOException{
+    public Lines(String s) throws ParserConfigurationException, SAXException, IOException{
         B=new Block(s);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	Document doc = factory.newDocumentBuilder().parse(new InputSource(new StringReader(s)));
         lineTag = doc.getElementsByTagName("Line");
-        //
-        System.out.println(((Element)lineTag.item(0)).getElementsByTagName("Branch").getLength());//item(0).getTextContent());
         String p=((Element)((Element)lineTag.item(0)).getElementsByTagName("P").item(1)).getTextContent();
         int k=((Element)lineTag.item(1)).getElementsByTagName("P").getLength();
         int x=((Element)lineTag.item(1)).getElementsByTagName("P").getLength();
         String r=((Element)((Element)lineTag.item(0)).getElementsByTagName("P").item(1)).getAttribute("Name");
-        System.out.println(r);
-        //
     }
     
     public int getNoOfLines(){
@@ -107,10 +103,7 @@ public class LinesNew {
                                 }
                                  
                         }
-                }
-            
-           
-        
+                }   
     }
         l=v.toArray(new Line[v.size()]);
         branch.getElements().add(new MoveTo(B.getXCoordinate(4),(B.getYCoordinate(4)+B.getBlockHeight(4)*1.2/2)));
@@ -125,15 +118,5 @@ public class LinesNew {
     }
     public Path[] getPaths(){
         return p;
-    }
-    public static void main(String []args) throws IOException, ParserConfigurationException, SAXException{
-        String filename = "F:/Electrical junior2/Advanced programming/Project/Example.mdl";
-        // Read the .mdl file as a string
-        String content = new String(Files.readAllBytes(Paths.get(filename)), Charset.defaultCharset());
-           String s="";
-           int start=content.indexOf("<System>");
-           int end =content.indexOf("</System>",start);
-        s = content.substring(start, end+"</System>".length());
-        LinesNew l =new LinesNew(s);
     }
 }

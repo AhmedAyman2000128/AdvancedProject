@@ -1,5 +1,4 @@
 package AdvancedProject;
-
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -39,7 +38,6 @@ public class Project extends Application {
            int end =content.indexOf("</System>",start);
         s = content.substring(start, end+"</System>".length());
         Block B=new Block(s);
-        Line1 L=new Line1(s);
         Rectangle []r=new Rectangle[B.getNoOfBlocks()];
         Text []t =new Text[B.getNoOfBlocks()];
         for(int i=0;i<B.getNoOfBlocks();i++){
@@ -57,7 +55,7 @@ public class Project extends Application {
         t[i].setX(B.getXCoordinate(i));
         t[i].setFont(new Font(10));
         }
-        LinesNew l =new LinesNew(s);
+        Lines l =new Lines(s);
         l.setLines();
         Path []p=l.getPaths();
         Pane pane=new Pane();
@@ -67,11 +65,7 @@ public class Project extends Application {
         pane.getChildren().add(p[1]);
         pane.getChildren().add(p[3]);
         pane.getChildren().add(p[5]);
-        System.out.println(p.length);
-        
-
         Scene scene =new Scene(pane,B.getTotalBlocksWidth(),B.getTotalBlockHeight());
-        
          primaryStage.setScene(scene);
          primaryStage.setTitle("Simulation");
          primaryStage.show();

@@ -51,7 +51,6 @@ public class Block{
            o[j]=Integer.parseInt(s[j].trim());
        }
        return o;
-       //must apply trim for the elements of the String
    }
    
    public int[] getPositionByIndex(int i){
@@ -139,11 +138,9 @@ public class Block{
    public int getTotalBlockHeight(){
        return getMaxY()-getMinY()+100;
    }
-   //gdeed
    public void setNoOfInputs(int inputs){
        noOfInputs=inputs;
    }
-   //gdeed
    public void setNoOfOutputs(int outputs){
        noOfOutputs=outputs;
    }
