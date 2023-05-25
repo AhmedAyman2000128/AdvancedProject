@@ -38,9 +38,6 @@ public class Project extends Application {
            int start=content.indexOf("<System>");
            int end =content.indexOf("</System>",start);
         s = content.substring(start, end+"</System>".length());
-        // Print the content of the .mdl file
-        ///System.out.println(s);
-        //showing the window
         Block B=new Block(s);
         Line1 L=new Line1(s);
         Rectangle []r=new Rectangle[B.getNoOfBlocks()];
@@ -48,8 +45,8 @@ public class Project extends Application {
         for(int i=0;i<B.getNoOfBlocks();i++){
         r[i]=new Rectangle();
         t[i]=new Text();
-        r[i].setX(B.getXCoordinate(i));//B.getPositionByIndex(i)[0]-500);//B.getXCoordinate(i));
-        r[i].setY(B.getYCoordinate(i));//B.getPositionByIndex(i)[1]);//B.getYCoordinate(i));
+        r[i].setX(B.getXCoordinate(i));
+        r[i].setY(B.getYCoordinate(i));
         r[i].setWidth(B.getBlockWidth(i)*1.2);
         r[i].setHeight(B.getBlockHeight(i)*1.2);
         r[i].setStroke(Color.GREY);
@@ -60,22 +57,17 @@ public class Project extends Application {
         t[i].setX(B.getXCoordinate(i));
         t[i].setFont(new Font(10));
         }
-        //
         LinesNew l =new LinesNew(s);
         l.setLines();
-       // Line []l1=l.getLines();
         Path []p=l.getPaths();
-        //
         Pane pane=new Pane();
         pane.getChildren().addAll(t);
         pane.getChildren().addAll(r);
-       // pane.getChildren().addAll(l1);
-       pane.getChildren().add(p[0]);
-       pane.getChildren().add(p[1]);
-       pane.getChildren().add(p[3]);
-       pane.getChildren().add(p[5]);
-       
-       //pane.getChildren().add();
+        pane.getChildren().add(p[0]);
+        pane.getChildren().add(p[1]);
+        pane.getChildren().add(p[3]);
+        pane.getChildren().add(p[5]);
+        System.out.println(p.length);
         
 
         Scene scene =new Scene(pane,B.getTotalBlocksWidth(),B.getTotalBlockHeight());

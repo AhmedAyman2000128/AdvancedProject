@@ -13,6 +13,7 @@ import java.util.Vector;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Polyline;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
@@ -57,34 +58,6 @@ public class LinesNew {
         Point2D start=new Point2D(0,0);
         Point2D end;
         for(int i=0;i<getNoOfLines();i++){
-            /*if(((Element)lineTag.item(i)).getElementsByTagName("Branch").getLength()==0){
-                for(int j=0;j<((Element)lineTag.item(i)).getElementsByTagName("P").getLength();j++){
-                        if(((Element)((Element)lineTag.item(i)).getElementsByTagName("P").item(j)).getAttribute("Name").equals("Src")){
-                            String s=((Element)((Element)lineTag.item(i)).getElementsByTagName("P").item(j)).getTextContent();
-                                for(int w=0;w<B.getNoOfBlocks();w++)
-                                {
-                                    if(B.getSID(w)==Integer.parseInt(""+s.charAt(0))){
-                                        
-                                        start=new Point2D(B.getXCoordinate(w)+B.getBlockWidth(w)*1.2,B.getYCoordinate(w)+B.getBlockHeight(w)*1.2/2);
-                                        
-                                    }
-                                }
-                        }
-                        else if(((Element)((Element)lineTag.item(i)).getElementsByTagName("P").item(j)).getAttribute("Name").equals("Dst")){
-                            String s=((Element)((Element)lineTag.item(i)).getElementsByTagName("P").item(j)).getTextContent();
-                                for(int w=0;w<B.getNoOfBlocks();w++)
-                                {
-                                    if(B.getSID(w)==Integer.parseInt(""+s.charAt(0))){
-                                        
-                                        end =new Point2D(B.getXCoordinate(w),B.getYCoordinate(w)+B.getBlockHeight(w)*1.2/2);
-                                        v.add(new Line(start.getX(),start.getY(),end.getX(),end.getY()));
-                                        
-                                    }
-                                }
-                        }
-                }
-            }*/
-            
                 int srcpointx=0;
                 int srcpointy=0;
                 
@@ -96,11 +69,6 @@ public class LinesNew {
                                 for(int w=0;w<B.getNoOfBlocks();w++)
                                 {
                                     if(B.getSID(w)==Integer.parseInt(""+s.charAt(0))){
-                                        /*l[i].setStartX(B.getXCoordinate(w)+B.getBlockWidth(w)*1.2);
-                                        l[i].setStartY(B.getYCoordinate(w)+B.getBlockHeight(w)*1.2/2);*/
-                                        /*//
-                                        start=new Point2D(B.getXCoordinate(w)+B.getBlockWidth(w)*1.2,B.getYCoordinate(w)+B.getBlockHeight(w)*1.2/2);
-                                        //*/
                                         if(B.getYCoordinate(w)<=(B.getBlockHeight(w)+B.getMinY()))
                                         {
                                         srcpointx = (int) (B.getXCoordinate(w) + B.getBlockWidth(w)*1.2);
@@ -117,6 +85,7 @@ public class LinesNew {
                             String s=((Element)((Element)lineTag.item(i)).getElementsByTagName("P").item(j)).getTextContent();
                                 for(int w=0;w<B.getNoOfBlocks();w++)
                                 {
+                                    if(w==4)continue;
                                     if(B.getSID(w)==Integer.parseInt(""+s.charAt(0))){
                                         
                                         branch.getElements().add(new MoveTo(srcpointx,srcpointy));
@@ -144,6 +113,11 @@ public class LinesNew {
         
     }
         l=v.toArray(new Line[v.size()]);
+        branch.getElements().add(new MoveTo(B.getXCoordinate(4),(B.getYCoordinate(4)+B.getBlockHeight(4)*1.2/2)));
+        branch.getElements().add(new LineTo(B.getXCoordinate(4)-20,B.getYCoordinate(4)+B.getBlockHeight(4)*1.2/2));
+        branch.getElements().add(new LineTo(B.getXCoordinate(4)-20,B.getYCoordinate(0)+B.getBlockHeight(0)*1.2/2+5));
+        branch.getElements().add(new LineTo(B.getXCoordinate(0),B.getYCoordinate(0)+B.getBlockHeight(0)*1.2/2+5));
+        p1.add(branch);
         p=p1.toArray(new Path[p1.size()]);
     }
     public Line[] getLines(){
@@ -161,6 +135,5 @@ public class LinesNew {
            int end =content.indexOf("</System>",start);
         s = content.substring(start, end+"</System>".length());
         LinesNew l =new LinesNew(s);
-        //Line []l1=l.getLines();
     }
 }
