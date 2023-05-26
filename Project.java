@@ -25,17 +25,24 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
-
+/*
+Names : 
+1- Ahmed Ayman Abd El Fatah Elfeel 2000128
+2- Fady Adel Botros Awdallah       2001388
+3- Adham Mohamed Mohamed hassan    2001378
+4- Shawky Ahmed Shawky             2002020
+*/
 public class Project extends Application {
     @Override
      public void start(Stage primaryStage)throws IOException, ParserConfigurationException, SAXException{
-         String filename = "F:/Electrical junior2/Advanced programming/Project/Example.mdl";
+        //Please put the destination of the file here
+        String filename = "F:/Electrical junior2/Advanced programming/Project/Example.mdl";
 
         // Read the .mdl file as a string
         String content = new String(Files.readAllBytes(Paths.get(filename)), Charset.defaultCharset());
-           String s="";
-           int start=content.indexOf("<System>");
-           int end =content.indexOf("</System>",start);
+        String s="";
+        int start=content.indexOf("<System>");
+        int end =content.indexOf("</System>",start);
         s = content.substring(start, end+"</System>".length());
         Block B=new Block(s);
         Rectangle []r=new Rectangle[B.getNoOfBlocks()];
